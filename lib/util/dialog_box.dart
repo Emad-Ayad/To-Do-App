@@ -27,7 +27,7 @@ class _DialogBoxState extends State<DialogBox> {
       if (focusNode.hasFocus) {
         hintText = '';
       } else {
-        hintText = 'Hello , iam Hint';
+        hintText = 'Add New Task';
       }
       setState(() {});
     });
