@@ -18,7 +18,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-
     if(_myBox.get('ToDoList')==null){
       db.createInitialData();
     }else{
@@ -62,6 +61,27 @@ class _HomePageState extends State<HomePage> {
     db.updateDataBase();
   }
 
+   edit (int index){
+    setState(() {
+      //TODO The problem is here!!!!!!
+      db.toDoList[index][0] = Text(_controller.text).toString();
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+    db.updateDataBase();
+  }
+
+  //ToDo make this edit function work
+  void updateTask (int index){
+    showDialog(context: context, builder: (context){
+      return DialogBox(
+        controller: _controller,
+        onSave: ()=> edit(index) ,
+        onCancel: () => Navigator.of(context).pop() ,
+      );
+    },);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,6 +111,7 @@ class _HomePageState extends State<HomePage> {
             taskCompleted:  db.toDoList[index][1],
             onChanged: (value) => checkBoxChanged(value, index),
             deleteFunction: (context) => deleteTask(index),
+            updateFunction: (context) => updateTask(index),
           );
         },
       ),
