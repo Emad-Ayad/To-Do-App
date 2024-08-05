@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:todo_app/Pages/home_Screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todo_app/Pages/splash_screen.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }

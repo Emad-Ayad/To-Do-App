@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
    edit (int index){
     setState(() {
       //TODO The problem is here!!!!!!
-      db.toDoList[index][0] = Text(_controller.text).toString();
+      db.toDoList[index][0] = _controller.text;
       _controller.clear();
     });
     Navigator.of(context).pop();
