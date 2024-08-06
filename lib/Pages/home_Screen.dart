@@ -63,15 +63,14 @@ class _HomePageState extends State<HomePage> {
 
    edit (int index){
     setState(() {
-      //TODO The problem is here!!!!!!
       db.toDoList[index][0] = _controller.text;
+      db.toDoList[index][1] = false;
       _controller.clear();
     });
     Navigator.of(context).pop();
     db.updateDataBase();
   }
 
-  //ToDo make this edit function work
   void updateTask (int index){
     showDialog(context: context, builder: (context){
       return DialogBox(
@@ -87,7 +86,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Color(0Xff222222),
+        backgroundColor: const Color(0Xff222222),
         title: const Center(
           child: Text(
             "TO DO List",
