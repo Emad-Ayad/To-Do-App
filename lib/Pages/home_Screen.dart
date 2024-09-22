@@ -25,8 +25,6 @@ class _HomePageState extends State<HomePage> {
     }
     super.initState();
   }
-  
-
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {

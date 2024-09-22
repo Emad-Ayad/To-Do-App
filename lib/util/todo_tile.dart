@@ -6,7 +6,6 @@ class ToDoTile extends StatelessWidget {
   final bool taskCompleted;
   Function(bool?)? onChanged;
   Function(BuildContext)? deleteFunction;
-  //TODO
   Function(BuildContext)? updateFunction;
 
   ToDoTile(
@@ -15,7 +14,6 @@ class ToDoTile extends StatelessWidget {
       required this.taskCompleted,
       required this.onChanged,
       required this.deleteFunction,
-        //TODO
       required this.updateFunction});
 
   @override
@@ -34,7 +32,6 @@ class ToDoTile extends StatelessWidget {
                   topLeft: Radius.circular(12),
                   bottomLeft: Radius.circular(12)),
             ),
-            //TODO make this work
             SlidableAction(
               onPressed: updateFunction,
               icon: Icons.edit,

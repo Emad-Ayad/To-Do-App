@@ -19,6 +19,8 @@ class DialogBox extends StatefulWidget {
 class _DialogBoxState extends State<DialogBox> {
   FocusNode focusNode = FocusNode();
   String hintText = 'Add New Task';
+  final _formKey = GlobalKey<FormState>();
+
 
   @override
   void initState() {
@@ -39,28 +41,42 @@ class _DialogBoxState extends State<DialogBox> {
       backgroundColor: Colors.white,
       content: Container(
         height: 140,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            TextField(
-              focusNode: focusNode,
-              controller: widget.controller,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.never,
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
-                hintText: hintText,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextFormField(
+                focusNode: focusNode,
+                controller: widget.controller,
+                textAlign: TextAlign.center,
+                validator: (value){
+                  if (value == null || value.isEmpty) {
+                    return "This field is empty !!";
+                  }else {
+                    return null;
+                  }
+                },
+                decoration: InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  border:
+                      OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
+                  hintText: hintText,
+                ),
               ),
-            ),
-            Row(
-              children: [
-                MyButtons(text: "Save", onPressed: widget.onSave),
-                SizedBox(width: 55),
-                MyButtons(text: "Cancel", onPressed: widget.onCancel),
-              ],
-            ),
-          ],
+              Row(
+                children: [
+                  MyButtons(text: "Save", onPressed:(){
+                    if (_formKey.currentState!.validate()) {
+                      widget.onSave();
+                    }
+                  }),
+                  const SizedBox(width: 55),
+                  MyButtons(text: "Cancel", onPressed: widget.onCancel),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
